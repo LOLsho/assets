@@ -1,0 +1,20 @@
+extends ./common/_base
+
+
+
+block content
+    .container
+        .content
+            .block
+                h2.block__title Всего заработано на проданных акциях
+                if number > 0
+                    .block__number.block__number-good= `${number} р`
+                else
+                    .block__number.block__number-bad= `${number} р`
+
+            .block
+                h2.block__title Всего заработано на проданных акциях
+                if number > 0
+                    .block__number.block__number-good= `${number} р`
+                else
+                    .block__number.block__number-bad= `${number} р`
