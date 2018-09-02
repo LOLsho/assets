@@ -8,7 +8,6 @@ router.get('/get-bonds', controller.getBonds);
 router.get('/get-etfs', controller.getEtfs);
 router.get('/get-shares', controller.getShares);
 
-
 router.post('/add', controller.addAsset);
 
 

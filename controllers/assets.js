@@ -20,20 +20,25 @@ module.exports.getShares = (req, res) => {
     console.log('in getShares');
 };
 
+const types = ['ETF', 'BOND', 'SHARE'];
 module.exports.addAsset = (req, res) => {
     let userData = req.body;
 
+    console.log('userData - ', userData);
+
     let assetType = typeof userData.type === 'string' && types.indexOf(userData.type) > -1 ? userData.type.toUpperCase() : false;
     let assetName = typeof userData.name === 'string' && userData.name.length > 0 ? userData.name : false;
-    let buyCommission = typeof userData.buyCommission === 'number' && userData.buyCommission >= 0 ? userData.buyCommission : false;
-    let sellCommission = typeof userData.sellCommission === 'number' && userData.sellCommission >= 0 ? userData.sellCommission : false;
-    let buyDate = typeof userData.buyDate === 'string' && userData.buyDate.length > 0 ? userData.buyDate : false;
-    let sellDate = typeof userData.sellDate === 'string' && userData.sellDate.length > 0 ? userData.sellDate : false;
-    let buyPrice = typeof userData.buyPrice === 'number' && userData.buyPrice >= 0 ? userData.buyPrice : false;
-    let sellPrice = typeof userData.sellPrice === 'number' && userData.sellPrice >= 0 ? userData.sellPrice : false;
+    let buyPrice = typeof +userData.buyPrice === 'number' && +userData.buyPrice >= 0 ? +userData.buyPrice : false;
+    let sellPrice = typeof +userData.sellPrice === 'number' && +userData.sellPrice >= 0 ? +userData.sellPrice : false;
     let currencyCode = typeof userData.currencyCode === 'string' && userData.currencyCode.length > 0 ? userData.currencyCode.toUpperCase() : false;
+    let buyDate = typeof userData.buyDate === 'string' && +userData.buyDate.length > 0 ? userData.buyDate : false;
+    let sellDate = typeof userData.sellDate === 'string' && +userData.sellDate.length > 0 ? userData.sellDate : false;
+    let buyCommission = typeof +userData.buyCommission === 'number' && +userData.buyCommission >= 0 ? +userData.buyCommission : false;
+    let sellCommission = typeof +userData.sellCommission === 'number' && +userData.sellCommission >= 0 ? +userData.sellCommission : false;
+    let quantity = typeof +userData.quantity === 'number' && +userData.quantity > 0 ? userData.quantity : false;
+    let dividends = typeof +userData.dividends === 'number' ? userData.dividends : false;
 
-    if (assetType && assetName && buyCommission && sellCommission && buyDate && sellDate && buyPrice && sellPrice && currencyCode) {
+    if (assetType && assetName && buyCommission && sellCommission && buyDate && sellDate && buyPrice && sellPrice && currencyCode && quantity) {
         let assetToSave = {
             type: assetType,
             name: assetName,
@@ -43,7 +48,8 @@ module.exports.addAsset = (req, res) => {
             sellDate,
             buyPrice,
             sellPrice,
-            currencyCode
+            currencyCode,
+            quantity
         };
 
         let dirPath = 'completedDeals/';
@@ -55,6 +61,7 @@ module.exports.addAsset = (req, res) => {
                 dirPath += 'BOND';
                 break;
             case 'SHARE':
+                assetToSave.dividends = dividends ? dividends : 0;
                 dirPath += 'SHARE';
                 break;
             default:
@@ -92,4 +99,3 @@ module.exports.addAsset = (req, res) => {
     }
 };
 
-const types = ['ETF', 'BOND', 'SHARE'];

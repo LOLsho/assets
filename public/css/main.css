@@ -1,6 +1,18 @@
 * {
     padding: 0;
     margin: 0;
+    box-sizing: border-box;
+    outline: none;
+}
+
+body {
+    background: pink url("../img/bg/white-needle.png");
+    /*font-family: 'EB Garamond', serif;*/
+    font-family: 'Montserrat Alternates', sans-serif;
+}
+
+.main-page {
+    height: 100vh;
 }
 
 .container {
@@ -13,16 +25,27 @@
 
 }
 
+.block__container {
+    margin-left: auto;
+    width: 600px;
+}
+
 .block {
-    margin: 10px auto;
-    background-color: blanchedalmond;
+    border: 3px solid #cd4e4e;
+    background-color: rgba(255, 255, 255, 0.4);
+    padding: 15px 20px;
+    color: #cd4e4e;
     border-radius: 10px;
-    padding: 15px;
-    width: fit-content;
+}
+
+.block__add-asset {
+    width: 594px;
+    margin: auto;
 }
 
 .block__title {
-
+    text-align: center;
+    margin-bottom: 15px;
 }
 
 .block__number {
@@ -37,10 +60,102 @@
 
 .block__number-good {
     color: white;
-    background-color: greenyellow;
+    background-color: #cd4e4e;
 }
 
 .block__number-bad {
     color: white;
     background-color: indianred;
+}
+
+.input__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 30px;
+}
+
+.input__label {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+    font-weight: 500;
+}
+
+.input__input {
+    height: 90%;
+    width: 200px;
+    background-color: #cd4e4e;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 0 9px;
+}
+
+.input__block {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.submit-btn__wrap {
+    margin-top: 8px;
+    text-align: center;
+    position: relative;
+}
+
+.submit-btn {
+    background-color: #cd4e4e;
+    cursor: pointer;
+    color: white;
+    font-family: 'Montserrat Alternates', sans-serif;
+    padding: 10px 18px;
+    font-size: 15px;
+    border-radius: 10px;
+    transition: background-color 0.3s ease, transform 1s ease;
+    border: none;
+}
+
+.submit-btn:active {
+    background-color: #cd292c;
+}
+
+.submit-btn:hover {
+    transform: scale(1.02);
+}
+
+.loader {
+    position: absolute;
+    top: 7px;
+    margin-left: 10px;
+    font-size: 23px;
+}
+
+.loader-hidden {
+    opacity: 0;
+}
+
+.select {
+    width: 200px;
+    height: 90%;
+    background-color: #cd4e4e;
+    color: white;
+    border: none;
+}
+
+.option {
+
+}
+
+.checkBox {
+    margin-top: 5px;
+    margin-right: 5px;
+}
+
+.checkBox label {
+    /*font-size: 15px;*/
+}
+
+.hidden {
+    display: none;
 }

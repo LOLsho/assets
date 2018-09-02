@@ -3,18 +3,79 @@ extends ./common/_base
 
 
 block content
-    .container
-        .content
-            .block
-                h2.block__title Всего заработано на проданных акциях
-                if number > 0
-                    .block__number.block__number-good= `${number} р`
-                else
-                    .block__number.block__number-bad= `${number} р`
+    section.main-page
+        .container
+            .content
+                .block__container
+                    form.block.block__add-asset#addAssetForm
+                        h2.block__title Добавить актив
+                        .input__row
+                            .input__label Тип
+                            select.select#assetType(name="type")
+                                option.option ETF
+                                option.option BOND
+                                option.option SHARE
 
-            .block
-                h2.block__title Всего заработано на проданных акциях
-                if number > 0
-                    .block__number.block__number-good= `${number} р`
-                else
-                    .block__number.block__number-bad= `${number} р`
+                        .input__row
+                            .input__label Валюта
+                            select.select#currency(name="currency")
+                                option.option RUB
+                                option.option USD
+
+                        .input__row
+                            .input__label Название
+                            .input__block
+                                .pretty.p-default.p-curve.p-thick.p-smooth.p-pulse.checkBox
+                                    input(type='checkbox')
+                                    .state.p-danger-o
+                                        label Из списка?
+                                input.input__input#assetName(type="text" name="name")
+
+                        .input__row
+                            .input__label Количество
+                            input.input__input#quantity(type="number" name="quantity")
+
+                        .input__row
+                            .input__label Цена покупки
+                            input.input__input#buyPrice(type="number" name="buyPrice")
+
+                        .input__row
+                            .input__label Цена продажи
+                            input.input__input#sellPrice(type="number" name="sellPrice")
+
+                        .input__row
+                            .input__label Комиссия за покупку
+                            input.input__input#buyCommission(type="number" name="buyCommission")
+
+                        .input__row
+                            .input__label Комиссия за продажу
+                            input.input__input#sellCommission(type="number" name="sellCommission")
+
+                        .input__row.hidden#dividendsBlock
+                            .input__label Дивиденты
+                            input.input__input#dividends(type="number" name="dividends")
+
+                        .input__row
+                            .input__label Дата покупки
+                            input.input__input#buyDate(type="date" name="buyDateDay")
+
+                        .input__row
+                            .input__label Дата продажи
+                            input.input__input#sellDate(type="date" name="sellDateDay")
+
+                        .submit-btn__wrap
+                            button.submit-btn#submitBtn Добавить
+                            i#addAssetLoader(class="loader loader-hidden fas fa-circle-notch fa-spin")
+
+
+
+
+
+                .block
+                    h2.block__title Всего заработано
+                    if totalProfit > 0
+                        .block__number.block__number-good= `${totalProfit} ₽`
+                    else
+                        .block__number.block__number-bad= `${totalProfit} ₽`
+
+
